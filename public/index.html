@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification Hub Custom Activity</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div id="dev-banner" class="dev-banner" hidden>Development mode. Not for production use.</div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="app-header">
+      <div class="app-header__inner">
+        <p class="app-header__eyebrow">Salesforce Marketing Cloud</p>
+        <h1 class="app-header__title">Notification Hub Custom Activity</h1>
+      </div>
+    </header>
+
+    <div id="standalone-bar" class="standalone-bar" hidden>
+      <p class="standalone-bar__badge">Standalone Development Mode</p>
+      <p class="standalone-bar__hint">
+        Standalone Development Mode. Entry fields come from the local fixture (LOCAL_ORDER_ENTRY). Save payloads are logged and stored in localStorage. Nothing reaches Journey Builder.
+      </p>
+      <div class="standalone-bar__actions">
+        <button type="button" id="standalone-next" class="button button--primary">Simulate Next</button>
+        <button type="button" id="standalone-back" class="button button--secondary">Simulate Back</button>
+        <button type="button" id="standalone-reset" class="button button--secondary">Reset Fixture</button>
+      </div>
+      <pre id="standalone-output" class="standalone-bar__output" hidden></pre>
+    </div>
+
+    <main id="main" class="app-main">
+      <div id="activity-status" class="status-region" aria-live="polite" hidden></div>
+
+      <section class="card" aria-labelledby="template-selection-heading">
+        <header class="card__header">
+          <h2 id="template-selection-heading" class="card__title">Template Selection</h2>
+        </header>
+
+        <div class="field">
+          <label for="channel-select" class="field__label">Channel</label>
+          <select id="channel-select" class="field__control" aria-describedby="channel-hint">
+            <option value="">Select channel</option>
+          </select>
+          <p id="channel-hint" class="card__hint">Choose the notification channel first. Only its templates are shown.</p>
+        </div>
+
+        <div class="field">
+          <label for="template-select" class="field__label">Template</label>
+          <select id="template-select" class="field__control" disabled aria-describedby="template-status">
+            <option value="">Loading templates...</option>
+          </select>
+        </div>
+
+        <div id="template-status" class="status-region" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="card" aria-labelledby="schema-heading">
+        <header class="card__header">
+          <h2 id="schema-heading" class="card__title">Journey Entry Schema</h2>
+          <p class="card__hint">Fields come from the Journey entry source. The Custom Activity reads metadata only, never Data Extension rows.</p>
+        </header>
+        <div id="schema-status" class="schema-status-region" aria-live="polite">
+          <p class="placeholder placeholder--compact">Waiting for Journey Builder...</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="template-metadata-heading">
+        <header class="card__header">
+          <h2 id="template-metadata-heading" class="card__title">Template Metadata</h2>
+        </header>
+        <div id="template-details" class="card__body" aria-live="polite">
+          <p class="placeholder">Loading template details...</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="mapping-targets-heading">
+        <header class="card__header">
+          <h2 id="mapping-targets-heading" class="card__title">Dynamic Mapping Targets</h2>
+          <p class="card__hint">Choose where each template field gets its value: a Data Extension field or a fixed value.</p>
+        </header>
+        <div id="mapping-targets" class="mapping-grid">
+          <p class="placeholder">Loading mapping targets...</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="validation-heading">
+        <header class="card__header">
+          <h2 id="validation-heading" class="card__title">Validation Status</h2>
+        </header>
+        <div id="validation-panel" class="validation-region" aria-live="polite">
+          <p class="placeholder placeholder--compact">Validation runs once a template is selected.</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="mapping-summary-heading">
+        <header class="card__header">
+          <h2 id="mapping-summary-heading" class="card__title">Current Mapping</h2>
+          <p class="card__hint">Debugging view. Mappings are kept in browser memory only.</p>
+        </header>
+        <div id="mapping-summary" aria-live="polite">
+          <p class="placeholder placeholder--compact">No mappings configured yet.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Configuration is saved inside the Journey Builder activity definition. Field values are resolved by Journey Builder at execution time.</span>
+    </footer>
+
+    <dialog id="template-change-dialog" class="dialog" aria-labelledby="template-change-title" aria-describedby="template-change-body">
+      <h2 id="template-change-title" class="dialog__title">Change template?</h2>
+      <p id="template-change-body" class="dialog__body">Changing template will clear existing mappings.</p>
+      <div class="dialog__actions">
+        <button type="button" id="template-change-cancel" class="button button--secondary">Cancel</button>
+        <button type="button" id="template-change-continue" class="button button--primary">Continue</button>
+      </div>
+    </dialog>
+
+    <dialog id="channel-change-dialog" class="dialog" aria-labelledby="channel-change-title" aria-describedby="channel-change-body">
+      <h2 id="channel-change-title" class="dialog__title">Change channel?</h2>
+      <div id="channel-change-body" class="dialog__body">
+        <p>Changing channel will clear:</p>
+        <ul>
+          <li>Selected template</li>
+          <li>Mappings</li>
+        </ul>
+        <p>Do you want to continue?</p>
+      </div>
+      <div class="dialog__actions">
+        <button type="button" id="channel-change-cancel" class="button button--secondary">Cancel</button>
+        <button type="button" id="channel-change-continue" class="button button--primary">Continue</button>
+      </div>
+    </dialog>
+
+    <noscript>
+      <p class="app-noscript">This Custom Activity requires JavaScript.</p>
+    </noscript>
+
+    <script src="js/vendor/postmonger.js"></script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

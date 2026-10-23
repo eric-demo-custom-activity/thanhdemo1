@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+node_modules
+npm-debug.log*
+coverage
+tests
+docs
+scripts
+.git
+.vibeflow-preview.hash
+Dockerfile.preview.vibeflow
+Dockerfile.preview.vibeflow.dockerignore
+podman-compose.preview.vibeflow.yaml
+*.md
+!README.md

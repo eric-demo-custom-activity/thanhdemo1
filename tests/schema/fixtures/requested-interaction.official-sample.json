@@ -1,0 +1,34 @@
+{
+  "_comment": "Structure taken from the official Salesforce sample (sfmc-example-jb-custom-activity, modules/discount-redemption-split/src/sampleInteraction.js). The eventDefinitionKey value is synthetic. The sample contains no Data Extension field list in triggers[0].metaData.",
+  "id": "00000000-0000-0000-0000-000000000000",
+  "name": "Journey Name",
+  "triggers": [
+    {
+      "key": "TRIGGER",
+      "name": "TRIGGER",
+      "description": "",
+      "type": "EmailAudience",
+      "arguments": {
+        "startActivityKey": "{{Context.StartActivityKey}}",
+        "dequeueReason": "{{Context.DequeueReason}}",
+        "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+        "filterResult": "true"
+      },
+      "configurationArguments": {
+        "filterDefinitionId": "00000000-0000-0000-0000-000000000000",
+        "criteria": "",
+        "schemaVersionId": 0
+      },
+      "metaData": {
+        "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+        "eventDefinitionId": "A5599B62-B80F-4237-978C-9EF48C115D68",
+        "eventDefinitionKey": "DEAudience-00000000-0000-0000-0000-000000000000",
+        "chainType": "none",
+        "configurationRequired": false,
+        "iconUrl": "/images/icon-data-extension.svg",
+        "title": "Data Extension",
+        "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json"
+      }
+    }
+  ]
+}

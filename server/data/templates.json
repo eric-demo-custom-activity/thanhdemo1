@@ -1,0 +1,146 @@
+{
+  "items": [
+    {
+      "templateKey": "vac.service-change-notice.sms.988dfeff",
+      "displayName": "Vaccine Service Change SMS",
+      "channel": "SMS",
+      "version": 1,
+      "addresses": [
+        { "name": "phone", "required": true, "type": "phone" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "vaccinator", "required": true, "type": "string" },
+        { "name": "diseaseName", "required": true, "type": "string" },
+        { "name": "appointmentDate", "required": true, "type": "string" },
+        { "name": "replacementShopName", "required": true, "type": "string" },
+        { "name": "operatingHours", "required": false, "type": "string" },
+        { "name": "shopName", "required": true, "type": "string" }
+      ]
+    },
+    {
+      "templateKey": "vac.reminder.sms",
+      "displayName": "Vaccine Appointment Reminder SMS",
+      "channel": "SMS",
+      "version": 1,
+      "addresses": [
+        { "name": "phone", "required": true, "type": "phone" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "customerName", "required": true, "type": "string" },
+        { "name": "appointmentDate", "required": true, "type": "string" },
+        { "name": "shopName", "required": true, "type": "string" }
+      ]
+    },
+    {
+      "templateKey": "chat.order.confirm",
+      "displayName": "Order Confirmation ChatApp",
+      "channel": "ChatApp",
+      "version": 1,
+      "addresses": [
+        { "name": "chatUserId", "required": true, "type": "string" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "customerName", "required": true, "type": "string" },
+        { "name": "orderCode", "required": true, "type": "string" },
+        { "name": "amount", "required": true, "type": "number" }
+      ]
+    },
+    {
+      "templateKey": "chat.order.cancel",
+      "displayName": "Order Cancellation ChatApp",
+      "channel": "ChatApp",
+      "version": 1,
+      "addresses": [
+        { "name": "chatUserId", "required": true, "type": "string" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "customerName", "required": true, "type": "string" },
+        { "name": "orderCode", "required": true, "type": "string" },
+        { "name": "cancelReason", "required": false, "type": "string" }
+      ]
+    },
+    {
+      "templateKey": "fptlc.order-confirm.zns.6a12eabf",
+      "displayName": "Order Confirmation ZNS",
+      "channel": "Zalo",
+      "version": 1,
+      "addresses": [
+        { "name": "phone", "required": true, "type": "phone" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "customerName", "required": true, "type": "string" },
+        { "name": "customerID", "required": true, "type": "string" },
+        { "name": "shopName", "required": true, "type": "string" },
+        { "name": "amount", "required": true, "type": "string" },
+        { "name": "estimateDeliveryTime", "required": true, "type": "string" },
+        { "name": "purchaseDate", "required": true, "type": "string" },
+        { "name": "shortOrderCode", "required": true, "type": "string" },
+        { "name": "token", "required": true, "type": "string" }
+      ]
+    },
+    {
+      "templateKey": "vac.appointment.zns",
+      "displayName": "Vaccine Appointment Confirmation ZNS",
+      "channel": "Zalo",
+      "version": 1,
+      "addresses": [
+        { "name": "phone", "required": true, "type": "phone" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "customerName", "required": true, "type": "string" },
+        { "name": "appointmentDate", "required": true, "type": "string" },
+        { "name": "shopName", "required": true, "type": "string" }
+      ]
+    },
+    {
+      "templateKey": "brc.account.created.zalo",
+      "displayName": "BRC Account Created",
+      "channel": "BRC Zalo",
+      "version": 1,
+      "addresses": [
+        { "name": "phone", "required": true, "type": "phone" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "customerName", "required": true, "type": "string" },
+        { "name": "accountNumber", "required": true, "type": "string" }
+      ]
+    },
+    {
+      "templateKey": "brc.account.warning.zalo",
+      "displayName": "BRC Account Warning",
+      "channel": "BRC Zalo",
+      "version": 1,
+      "addresses": [
+        { "name": "phone", "required": true, "type": "phone" }
+      ],
+      "recipientFields": [
+        { "name": "customerId", "required": true, "type": "string" }
+      ],
+      "params": [
+        { "name": "customerName", "required": true, "type": "string" },
+        { "name": "warningMessage", "required": true, "type": "string" }
+      ]
+    }
+  ]
+}

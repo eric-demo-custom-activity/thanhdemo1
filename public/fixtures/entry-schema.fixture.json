@@ -1,0 +1,45 @@
+{
+  "eventDefinitionKey": "LOCAL_ORDER_ENTRY",
+  "fields": [
+    {
+      "name": "CustomerId",
+      "label": "Customer ID",
+      "dataType": "Text"
+    },
+    {
+      "name": "CustomerName",
+      "label": "Customer Name",
+      "dataType": "Text"
+    },
+    {
+      "name": "MobilePhone",
+      "label": "Mobile Phone",
+      "dataType": "Phone"
+    },
+    {
+      "name": "OrderAmount",
+      "label": "Order Amount",
+      "dataType": "Decimal"
+    },
+    {
+      "name": "PurchaseDate",
+      "label": "Purchase Date",
+      "dataType": "Date"
+    },
+    {
+      "name": "EstimateDeliveryTime",
+      "label": "Estimate Delivery Time",
+      "dataType": "Text"
+    },
+    {
+      "name": "ShopName",
+      "label": "Shop Name",
+      "dataType": "Text"
+    },
+    {
+      "name": "OrderToken",
+      "label": "Order Token",
+      "dataType": "Text"
+    }
+  ]
+}

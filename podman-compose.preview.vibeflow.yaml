@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.preview.vibeflow
+    environment:
+      PORT: 3000
+    ports:
+      - "8200:3000"
